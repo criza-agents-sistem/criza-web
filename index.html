@@ -365,7 +365,18 @@
     background: var(--surface);
     border: 1px solid var(--line);
     border-top: 3px solid var(--case-accent, var(--husk));
-    padding: clamp(1.7rem, 3vw, 2.5rem);
+    border-radius: 3px;
+    padding: clamp(1.8rem, 3.2vw, 2.6rem);
+    box-shadow: 0 1px 2px rgba(1,4,11,.04), 0 18px 40px -22px rgba(1,4,11,.20);
+    transition: box-shadow .3s ease, transform .3s ease;
+  }
+  .case:hover {
+    box-shadow: 0 2px 4px rgba(1,4,11,.05), 0 28px 56px -24px rgba(1,4,11,.28);
+    transform: translateY(-3px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case { transition: none; }
+    .case:hover { transform: none; }
   }
   .case:nth-child(2) { --case-accent: var(--emergence-2); }
   .case-tag {
