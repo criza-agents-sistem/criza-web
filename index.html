@@ -117,14 +117,17 @@
   .site-head {
     position: sticky; top: 0; z-index: 20;
     background: var(--ground);
-    background: color-mix(in srgb, var(--ground) 82%, transparent);
-    -webkit-backdrop-filter: saturate(1.5) blur(10px);
-    backdrop-filter: saturate(1.5) blur(10px);
+    background:
+      linear-gradient(90deg, rgba(244,70,10,.09), rgba(251,140,20,.07) 45%, rgba(28,150,94,.09)),
+      color-mix(in srgb, var(--ground) 80%, transparent);
+    -webkit-backdrop-filter: saturate(1.6) blur(10px);
+    backdrop-filter: saturate(1.6) blur(10px);
     border-bottom: 1px solid var(--line);
   }
   .site-head::before {
-    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
-    background: linear-gradient(90deg, var(--husk), #FB7713 38%, #6F9D80 68%, var(--emergence));
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px;
+    background: linear-gradient(90deg, var(--husk), #FB7713 36%, #6F9D80 66%, var(--emergence));
+    box-shadow: 0 8px 22px -10px rgba(244,102,20,.38);
   }
   .site-head .wrap {
     display: flex; align-items: center; gap: 1.5rem;
