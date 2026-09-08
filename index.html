@@ -347,55 +347,32 @@
   .point p { margin: 0; max-width: 56ch; line-height: 1.6; }
   @media (min-width: 720px) { .point { grid-template-columns: 11rem 1fr; gap: 2.5rem; align-items: baseline; } }
 
-  /* ---- casos: expedientes (objeto tipo libro) ---- */
-  .cases { margin-top: clamp(3rem, 6vw, 4.5rem); display: grid; gap: clamp(2.8rem, 6vw, 4rem); }
-  @media (min-width: 900px) { .cases { grid-template-columns: 1fr 1fr; gap: clamp(3.5rem, 7vw, 6rem); } }
+  /* ---- casos ---- */
+  .cases { margin-top: clamp(2.6rem, 5vw, 3.6rem); display: grid; gap: clamp(2rem, 4vw, 2.8rem); }
+  @media (min-width: 820px) { .cases { grid-template-columns: 1fr 1fr; gap: clamp(2.2rem, 4vw, 3.2rem); } }
   .case {
-    position: relative; background: #FFFFFF;
-    border: 1px solid rgba(1,4,11,.06);
-    border-left: 8px solid var(--case-accent, var(--husk));
-    border-radius: 1px 4px 4px 1px;
-    padding: clamp(2rem, 3.6vw, 2.9rem) clamp(1.7rem, 3.4vw, 2.6rem);
-    box-shadow:
-      4px 0 0 -1px #ECE4D2, 9px 0 0 -1px #E1D7BF, 14px 0 0 -1px #D4C9AB,
-      20px 26px 46px -18px rgba(1,4,11,.34);
-    transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--case-accent, var(--husk));
+    padding: clamp(1.7rem, 3vw, 2.5rem);
   }
   .case:nth-child(2) { --case-accent: var(--emergence-2); }
   .case-tag {
-    font-family: var(--font-label); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase;
-    color: var(--case-accent, var(--husk)); display: block;
-    margin: 0 0 1.1rem; padding-bottom: .85rem; border-bottom: 1px solid rgba(1,4,11,.1);
+    font-family: var(--font-label); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--stone); display: block; margin: 0 0 1rem;
   }
   .case h3 {
     font-family: var(--font-display); font-weight: 400;
-    font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.16; margin: 0 0 1.4rem;
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem); line-height: 1.18; margin: 0 0 1.3rem;
   }
   .case dl { margin: 0; display: grid; gap: 1rem; }
   .case dt {
     font-family: var(--font-label); font-size: .66rem; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--stone); margin-bottom: .25rem;
+    text-transform: uppercase; color: var(--husk); margin-bottom: .25rem;
   }
-  .case dd { margin: 0; color: var(--ink); line-height: 1.55; font-size: .98rem; }
+  .case dd { margin: 0; color: var(--stone); line-height: 1.55; font-size: .98rem; }
   .case .estado dd {
-    color: var(--case-accent, var(--husk)); font-family: var(--font-label);
-    font-size: .82rem; letter-spacing: .03em;
-  }
-  @media (min-width: 900px) {
-    .cases { perspective: 1500px; }
-    .case { transform: perspective(1500px) rotateY(-9deg); transform-origin: left center; }
-    .case:hover {
-      transform: perspective(1500px) rotateY(-1deg) translateY(-4px);
-      box-shadow:
-        4px 0 0 -1px #ECE4D2, 9px 0 0 -1px #E1D7BF, 14px 0 0 -1px #D4C9AB,
-        30px 44px 66px -20px rgba(1,4,11,.44);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .case { transition: none; }
-  }
-  @media (prefers-reduced-motion: reduce) and (min-width: 900px) {
-    .case, .case:hover { transform: perspective(1500px) rotateY(-6deg); }
+    color: var(--emergence); font-family: var(--font-label); font-size: .84rem; letter-spacing: .02em;
   }
 
   /* ---- equipo ---- */
