@@ -128,13 +128,16 @@
     text-decoration: none;
     padding-block: 4px;
   }
-  .mark-img { height: 26px; width: auto; display: block; }
-  /* Sin version del logo para fondo oscuro todavia: se muestra el mismo logo sobre
-     una placa clara para que se lea. Reemplazar por el archivo claro cuando llegue. */
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .mark { background: #F4F2EC; padding: 5px 10px; border-radius: 7px; }
+  /* Logo vectorial monocromo aplicado como mascara: se pinta con --ink, asi
+     sigue el tema (negro en claro, claro en oscuro). El acento naranja de la "a"
+     vuelve cuando la disenadora entregue la version en color. */
+  .mark-img {
+    display: block;
+    width: 98px; height: 26px;
+    background-color: var(--ink);
+    -webkit-mask: url("assets/logo.svg") no-repeat left center / contain;
+            mask: url("assets/logo.svg") no-repeat left center / contain;
   }
-  :root[data-theme="dark"] .mark { background: #F4F2EC; padding: 5px 10px; border-radius: 7px; }
   .nav {
     display: flex; gap: 1.6rem; margin-left: auto;
     font-family: var(--font-label);
@@ -381,7 +384,7 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="mark" href="#top" aria-label="CRIZA — inicio"><img class="mark-img" src="assets/logo.png" alt="CRIZA" width="1079" height="348"></a>
+    <a class="mark" href="#top" aria-label="CRIZA — inicio"><span class="mark-img" aria-hidden="true"></span></a>
     <nav class="nav" aria-label="Secciones">
       <a href="#que-hacemos">Qué hacemos</a>
       <a href="#como-trabajamos">Cómo trabajamos</a>
