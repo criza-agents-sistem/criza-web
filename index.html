@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="CRIZA — plataforma interdisciplinaria de innovación aplicada y creación de nuevos negocios. Integramos ciencia, biotecnología, ingeniería, IA y análisis económico para transformar problemas complejos en soluciones viables y escalables.">
+<meta name="theme-color" content="#FCFCFB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#01040B" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="CRIZA">
+<meta property="og:description" content="De la ciencia a la industria hay una transformación. La acompañamos de principio a fin.">
+<meta property="og:type" content="website">
+<title>CRIZA</title>
+<style>
+  :root {
+    --ground: #FCFCFB;
+    --surface: #FFFFFF;
+    --ink: #01040B;
+    --stone: #55605A;
+    --faint: #8C948D;
+    --line: #E4E2DA;
+    --husk: #F5450A;
+    --husk-2: #FB7713;
+    --husk-3: #FC8A03;
+    --husk-soft: #FBE4D6;
+    --emergence: #1C593D;
+    --emergence-2: #6F9D80;
+    --emergence-soft: #E5EDE7;
+    --focus: #F5450A;
+
+    --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
+    --font-body: "Quicksand", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    /* Etiquetas / eyebrows / botones. Placeholder: "Nashville" (de la disenadora) todavia no
+       embebida -- cae al mono hasta tener el archivo de fuente. */
+    --font-label: "Nashville", "IBM Plex Mono", ui-monospace, monospace;
+
+    --wrap: 1080px;
+    --prose: 40rem;
+  }
+  :root:not([data-theme="light"]) {
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #01040B;
+      --surface: #0B0F17;
+      --ink: #EEECE4;
+      --stone: #99A29B;
+      --faint: #5C645E;
+      --line: #191D25;
+      --husk: #FC8A03;
+      --husk-2: #FB7713;
+      --husk-3: #F5450A;
+      --husk-soft: #241309;
+      --emergence: #6F9D80;
+      --emergence-2: #6F9D80;
+      --emergence-soft: #101F19;
+      --focus: #FC8A03;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #01040B;
+    --surface: #0B0F17;
+    --ink: #EEECE4;
+    --stone: #99A29B;
+    --faint: #5C645E;
+    --line: #191D25;
+    --husk: #FC8A03;
+    --husk-2: #FB7713;
+    --husk-3: #F5450A;
+    --husk-soft: #241309;
+    --emergence: #6F9D80;
+    --emergence-2: #6F9D80;
+    --emergence-soft: #101F19;
+    --focus: #FC8A03;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  img { max-width: 100%; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 4rem); }
+  .prose { max-width: var(--prose); }
+
+  a { color: inherit; }
+  ::selection { background: var(--husk); color: var(--ground); }
+  section[id] { scroll-margin-top: 84px; }
+
+  .skip {
+    position: absolute; left: -999px; top: 0;
+    background: var(--ink); color: var(--ground);
+    padding: .6rem 1rem; border-radius: 4px; z-index: 100;
+  }
+  .skip:focus { left: 1rem; top: 1rem; }
+
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+
+  /* ---- header ---- */
+  .site-head {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--ground);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-head .wrap {
+    display: flex; align-items: center; gap: 1.5rem;
+    min-height: 68px;
+  }
+  .mark {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: .2em;
+    text-decoration: none;
+    color: var(--ink);
+    padding-block: 4px;
+    white-space: nowrap;
+  }
+  .mark .a { color: var(--husk); }
+  .nav {
+    display: flex; gap: 1.6rem; margin-left: auto;
+    font-family: var(--font-label);
+    font-size: .74rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .nav a { color: var(--stone); text-decoration: none; padding-block: .4rem; transition: color .18s; }
+  .nav a:hover { color: var(--ink); }
+  .head-tools { display: flex; align-items: center; gap: .5rem; margin-left: auto; }
+  .nav + .head-tools { margin-left: 1.6rem; }
+  .theme-btn {
+    appearance: none; background: transparent; border: 1px solid var(--line);
+    color: var(--stone); border-radius: 999px; width: 34px; height: 34px;
+    font-size: .95rem; cursor: pointer; display: grid; place-items: center;
+    transition: border-color .18s, color .18s;
+  }
+  .theme-btn:hover { color: var(--ink); border-color: var(--faint); }
+  .cta {
+    font-family: var(--font-label); font-size: .74rem; letter-spacing: .08em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid var(--ink); color: var(--ink);
+    padding: .55rem .9rem; border-radius: 999px; white-space: nowrap;
+    transition: background .18s, color .18s;
+  }
+  .cta:hover { background: var(--ink); color: var(--ground); }
+  @media (max-width: 860px) { .nav { display: none; } .head-tools { margin-left: auto; } }
+
+  /* ---- generic section ---- */
+  section { padding-block: clamp(4rem, 9vw, 7rem); }
+  .divider { border-top: 1px solid var(--line); }
+  .eyebrow {
+    font-family: var(--font-label);
+    font-size: .74rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--husk); margin: 0 0 1.4rem;
+  }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; line-height: 1.14; }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.35rem); margin: 0 0 1.1rem; letter-spacing: 0; }
+  h3 { font-size: 1.3rem; margin: 0 0 .4rem; }
+  p { margin: 0 0 1.1rem; }
+  .lead { font-size: clamp(1.1rem, 1.7vw, 1.3rem); color: var(--ink); }
+  .muted { color: var(--stone); }
+
+  /* ---- hero ---- */
+  .hero { padding-top: clamp(3.5rem, 8vw, 6rem); padding-bottom: clamp(3.5rem, 8vw, 6rem); position: relative; overflow: hidden; }
+  .hero .wrap { position: relative; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.6vw, 3.8rem);
+    font-weight: 400;
+    letter-spacing: -.005em;
+    line-height: 1.1;
+    margin: 0 0 1.6rem;
+    max-width: 20ch;
+  }
+  .hero .lead { max-width: 46ch; margin-bottom: 1.4rem; }
+  .hero .tagline {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: .01em;
+    color: var(--husk);
+    margin: 0 0 2.2rem;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+  .btn-primary {
+    font-family: var(--font-label); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+    text-decoration: none; background: var(--ink); color: var(--ground);
+    padding: .8rem 1.3rem; border-radius: 999px; transition: opacity .18s;
+  }
+  .btn-primary:hover { opacity: .85; }
+  .btn-ghost {
+    font-family: var(--font-label); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+    text-decoration: none; color: var(--stone); padding: .8rem .4rem;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+  .hero-motif {
+    position: absolute; right: clamp(0rem, 2vw, 2rem); top: 50%; transform: translateY(-50%);
+    width: 120px; height: 280px; opacity: .9; pointer-events: none;
+  }
+  @media (max-width: 980px) { .hero-motif { display: none; } }
+
+  /* ---- el nombre band ---- */
+  .band { background: var(--husk-soft); border-block: 1px solid var(--line); }
+  .band .big {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: -.015em;
+    margin: 0 0 1.2rem;
+    max-width: 22ch;
+  }
+  .band p { max-width: 54ch; color: var(--ink); }
+
+  /* ---- strands (que hacemos) ---- */
+  .strands { margin-top: 2.5rem; border-top: 1px solid var(--line); }
+  .strand {
+    display: grid; grid-template-columns: 1fr; gap: .3rem;
+    padding: 1.6rem 0; border-bottom: 1px solid var(--line);
+  }
+  .strand h3 { font-size: 1.35rem; margin: 0; }
+  .strand p { margin: 0; max-width: 60ch; color: var(--stone); }
+  @media (min-width: 720px) {
+    .strand { grid-template-columns: 15rem 1fr; gap: 2rem; align-items: baseline; }
+  }
+
+  /* ---- stages (como trabajamos) ---- */
+  .stages { margin-top: 2.8rem; position: relative; }
+  .stage {
+    position: relative;
+    padding: 0 0 2.4rem 3.4rem;
+  }
+  .stage:last-child { padding-bottom: 0; }
+  .stage::before {
+    content: "";
+    position: absolute; left: 11px; top: .55rem; bottom: -.2rem;
+    width: 2px;
+    background: linear-gradient(#F5450A, #FB7713, #FC8A03, #6F9D80, #1C593D);
+    opacity: .5;
+  }
+  .stage:last-child::before { display: none; }
+  .stage.s1 { --st: #F5450A; }
+  .stage.s2 { --st: #FB7713; }
+  .stage.s3 { --st: #FC8A03; }
+  .stage.s4 { --st: #6F9D80; }
+  .stage.s5 { --st: #1C593D; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .stage.s5 { --st: #6F9D80; }
+  }
+  :root[data-theme="dark"] .stage.s5 { --st: #6F9D80; }
+  .stage .node {
+    position: absolute; left: 0; top: .15rem;
+    width: 24px; height: 24px; border-radius: 999px;
+    background: var(--ground);
+    border: 2px solid var(--st, var(--husk));
+    display: grid; place-items: center;
+  }
+  .stage .node span {
+    width: 8px; height: 8px; border-radius: 999px; background: var(--st, var(--husk));
+  }
+  .stage .num {
+    font-family: var(--font-label); font-size: .76rem; letter-spacing: .1em;
+    color: var(--st, var(--husk)); display: block; margin-bottom: .2rem;
+  }
+  .stage h3 { display: inline; font-size: 1.3rem; }
+  .stage .dur {
+    font-family: var(--font-label); font-size: .78rem; color: var(--stone);
+    margin-left: .6rem;
+  }
+  .stage p { margin: .5rem 0 .6rem; max-width: 56ch; color: var(--stone); }
+  .stage .hito {
+    font-family: var(--font-label); font-size: .76rem; letter-spacing: .04em;
+    color: var(--ink);
+  }
+  .stage .hito b { color: var(--emergence); font-weight: 500; letter-spacing: .1em; margin-right: .5rem; }
+
+  /* ---- modelo (points) ---- */
+  .points { margin-top: 2.4rem; display: grid; gap: 0; }
+  .point {
+    padding: 1.4rem 0; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 1fr; gap: .3rem;
+  }
+  .point:last-child { border-bottom: 1px solid var(--line); }
+  .point .k { font-family: var(--font-label); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--husk); }
+  .point p { margin: 0; max-width: 58ch; }
+  @media (min-width: 720px) { .point { grid-template-columns: 12rem 1fr; gap: 2rem; align-items: baseline; } }
+
+  /* ---- casos ---- */
+  .cases { margin-top: 2.6rem; display: grid; gap: 2.6rem; }
+  @media (min-width: 820px) { .cases { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+  .case { border-top: 2px solid var(--ink); padding-top: 1.2rem; }
+  .case h3 { font-size: 1.35rem; margin-bottom: 1rem; }
+  .case dl { margin: 0; display: grid; gap: .9rem; }
+  .case dt {
+    font-family: var(--font-label); font-size: .72rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--husk); margin-bottom: .15rem;
+  }
+  .case dd { margin: 0; color: var(--stone); }
+  .case .estado dd { color: var(--emergence); font-family: var(--font-label); font-size: .85rem; }
+
+  /* ---- equipo ---- */
+  .team { margin-top: 2.6rem; display: grid; gap: 2.4rem; }
+  @media (min-width: 820px) { .team { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+  .member .mono {
+    width: 64px; height: 64px; border-radius: 999px; overflow: hidden;
+    background: var(--husk-soft); color: var(--husk);
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .04em;
+    margin-bottom: 1rem;
+  }
+  .member .mono img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .member h3 { font-size: 1.2rem; margin-bottom: .25rem; }
+  .member .role {
+    font-family: var(--font-label); font-size: .74rem; letter-spacing: .04em;
+    color: var(--husk); margin: 0 0 .7rem;
+  }
+  .member p { margin: 0; font-size: .96rem; color: var(--stone); line-height: 1.65; }
+
+  /* ---- valores ---- */
+  .values { margin-top: 2.4rem; display: grid; gap: 1.8rem; }
+  @media (min-width: 620px) { .values { grid-template-columns: 1fr 1fr; gap: 1.8rem 3rem; } }
+  @media (min-width: 960px) { .values { grid-template-columns: repeat(4, 1fr); } }
+  .value .k { font-family: var(--font-display); font-size: 1.15rem; display: block; margin-bottom: .35rem; }
+  .value p { margin: 0; font-size: .93rem; color: var(--stone); line-height: 1.6; }
+
+  /* ---- contacto ---- */
+  .contact h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+  .mailto {
+    display: inline-block; margin: 1.4rem 0 1.6rem;
+    font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    color: var(--husk); text-decoration: none;
+    border-bottom: 2px solid var(--emergence);
+    padding-bottom: .15rem;
+  }
+  .mailto:hover { color: var(--emergence); }
+  .doors {
+    font-family: var(--font-label); font-size: .8rem; color: var(--stone);
+    line-height: 2; letter-spacing: .02em;
+  }
+  .direct { margin-top: 2.4rem; }
+  .direct .k {
+    font-family: var(--font-label); font-size: .74rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--husk); display: block; margin-bottom: .7rem;
+  }
+  .direct ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+  .direct li { font-size: .98rem; color: var(--stone); }
+  .direct a { color: var(--husk); text-decoration: none; }
+  .direct a:hover { color: var(--emergence); }
+
+  /* ---- footer ---- */
+  footer { border-top: 1px solid var(--line); padding-block: 2.6rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: .6rem 2rem; justify-content: space-between; align-items: baseline; }
+  footer .id { font-family: var(--font-display); letter-spacing: .14em; }
+  footer .note { font-family: var(--font-label); font-size: .72rem; color: var(--faint); letter-spacing: .02em; max-width: 40ch; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Quicksand:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="CRIZA — inicio">CRIZ<span class="a">A</span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#que-hacemos">Qué hacemos</a>
+      <a href="#como-trabajamos">Cómo trabajamos</a>
+      <a href="#casos">Casos</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="head-tools">
+      <button class="theme-btn" id="theme" type="button" aria-label="Cambiar tema">◐</button>
+      <a class="cta" href="#contacto">Escribinos</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <a id="top"></a>
+
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <p class="eyebrow">Plataforma de innovación aplicada</p>
+      <h1 id="hero-h">De la ciencia a la industria hay una transformación. La acompañamos de principio a fin.</h1>
+      <p class="lead">Integramos ciencia, biotecnología, ingeniería, inteligencia artificial, análisis económico y capacidad de vinculación para convertir problemas complejos en soluciones concretas, viables y escalables. No recomendamos desde afuera: co-creamos.</p>
+      <p class="tagline">Pensamos fuera de la caja, con los pies en la tierra.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contacto">Contanos tu problema</a>
+        <a class="btn-ghost" href="#como-trabajamos">Cómo trabajamos →</a>
+      </div>
+    </div>
+    <svg class="hero-motif" viewBox="0 0 120 280" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cg" x1="60" y1="8" x2="60" y2="272" gradientUnits="userSpaceOnUse">
+          <stop offset="0" style="stop-color:#F5450A"/>
+          <stop offset="0.5" style="stop-color:#FC8A03"/>
+          <stop offset="1" style="stop-color:#1C593D"/>
+        </linearGradient>
+      </defs>
+      <path d="M60 12 C88 44 88 118 60 150 C32 118 32 44 60 12 Z" stroke="url(#cg)" stroke-width="1.5"/>
+      <path d="M40 46 H80 M36 66 H84 M34 86 H86 M36 106 H84 M40 126 H80" stroke="url(#cg)" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M60 150 C42 182 32 224 46 268" stroke="url(#cg)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M60 150 C78 182 88 224 74 268" stroke="url(#cg)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </section>
+
+  <section class="band" aria-labelledby="nombre-h">
+    <div class="wrap">
+      <p class="eyebrow">El nombre</p>
+      <p class="big" id="nombre-h">CRIZA viene de crisálida.</p>
+      <p>El paso de la ciencia a la industria es una metamorfosis. Mientras ocurre no tiene la belleza del estado final: exige método, trabajo y etapas. Pero es lo que hace que lo que emerge —una tecnología, un producto, un negocio— salga fuerte y pueda volar. Nuestro lugar es adentro de ese proceso, en todas sus etapas —incluida la implementación.</p>
+    </div>
+  </section>
+
+  <section id="que-hacemos" aria-labelledby="qh-h">
+    <div class="wrap">
+      <p class="eyebrow">Qué hacemos</p>
+      <h2 id="qh-h">Una sola mesa con todas las capacidades que un desarrollo necesita</h2>
+      <p class="lead muted prose">Partimos de un problema concreto y lo analizamos desde una perspectiva integral —técnica, científica, ambiental, económica y comercial. A partir de ahí identificamos oportunidades que suelen quedar ocultas, y construimos la solución y el negocio desde las primeras etapas.</p>
+
+      <div class="strands">
+        <div class="strand">
+          <h3>Ciencia y biotecnología</h3>
+          <p>Estado del arte, diseño de ensayos, selección de tecnologías y escalamiento desde el laboratorio hasta la planta.</p>
+        </div>
+        <div class="strand">
+          <h3>Inteligencia artificial aplicada</h3>
+          <p>Un equipo de agentes de IA especializados —investigación científica, evidencia, mercado y análisis económico— trabaja cada caso junto al equipo humano.</p>
+        </div>
+        <div class="strand">
+          <h3>Análisis económico y financiero</h3>
+          <p>Modelo de negocio, flujo de fondos, valuación y búsqueda de financiamiento desde el primer día.</p>
+        </div>
+        <div class="strand">
+          <h3>Vinculación</h3>
+          <p>Conexión con investigadores, laboratorios, empresas, organismos e inversores, en el ecosistema del Clúster de Biotecnología de Córdoba.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-trabajamos" class="divider" aria-labelledby="ct-h">
+    <div class="wrap">
+      <p class="eyebrow">Cómo trabajamos</p>
+      <h2 id="ct-h">Por etapas, con hitos de decisión</h2>
+      <p class="lead muted prose">La vinculación avanza en etapas sucesivas. Cada una tiene objetivos, entregables, presupuesto e hito de decisión propios. Se avanza cuando los resultados lo justifican —y se puede reformular o discontinuar al cierre de cualquiera.</p>
+
+      <div class="stages">
+        <div class="stage s1">
+          <span class="node"><span></span></span>
+          <span class="num">01</span>
+          <h3>Factibilidad tecnológica y comercial</h3><span class="dur">90 días</span>
+          <p>Determinar si hay una oportunidad técnica y de negocio lo bastante sólida para justificar una prueba de concepto.</p>
+          <p class="hito"><b>Hito</b>Continuar, reformular la búsqueda, o cerrar.</p>
+        </div>
+        <div class="stage s2">
+          <span class="node"><span></span></span>
+          <span class="num">02</span>
+          <h3>Prueba de concepto</h3><span class="dur">3–6 meses</span>
+          <p>Demostrar, en laboratorio o entorno controlado, que la ruta elegida funciona técnica y económicamente.</p>
+          <p class="hito"><b>Hito</b>Ruta validada y reproducible.</p>
+        </div>
+        <div class="stage s3">
+          <span class="node"><span></span></span>
+          <span class="num">03</span>
+          <h3>Piloto industrial</h3><span class="dur">6–12 meses</span>
+          <p>Validar la solución en condiciones reales de operación y definir si puede convertirse en una unidad industrial viable.</p>
+          <p class="hito"><b>Hito</b>Piloto exitoso.</p>
+        </div>
+        <div class="stage s4">
+          <span class="node"><span></span></span>
+          <span class="num">04</span>
+          <h3>Primera implementación</h3>
+          <p>Diseñar, financiar e implementar la primera unidad comercial a escala industrial.</p>
+          <p class="hito"><b>Hito</b>Unidad en operación.</p>
+        </div>
+        <div class="stage s5">
+          <span class="node"><span></span></span>
+          <span class="num">05</span>
+          <h3>Escalamiento y comercialización</h3>
+          <p>Convertir la primera experiencia validada en una solución replicable en otras plantas y mercados.</p>
+          <p class="hito"><b>Hito</b>Réplica o licencia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modelo" class="divider" aria-labelledby="mv-h">
+    <div class="wrap">
+      <p class="eyebrow">El modelo</p>
+      <h2 id="mv-h">Un socio en el desarrollo y en el negocio</h2>
+      <div class="points">
+        <div class="point">
+          <span class="k">Rol</span>
+          <p>Nos incorporamos como socio estratégico: dirección del proyecto, coordinación de las capacidades científicas y tecnológicas, análisis económico y estrategia de escalamiento.</p>
+        </div>
+        <div class="point">
+          <span class="k">Honorarios</span>
+          <p>Por etapa, con presupuestos independientes. El compromiso de las partes crece a medida que hay resultados.</p>
+        </div>
+        <div class="point">
+          <span class="k">Riesgo</span>
+          <p>Compartido. CRIZA participa en la tecnología y el negocio que surjan del trabajo conjunto.</p>
+        </div>
+        <div class="point">
+          <span class="k">Decisión</span>
+          <p>Siempre del cliente. El sistema arma y propone; la elección es de quien trae el caso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="casos" class="divider" aria-labelledby="cs-h">
+    <div class="wrap">
+      <p class="eyebrow">En qué trabajamos</p>
+      <h2 id="cs-h">Casos en curso</h2>
+      <p class="muted prose">Casos reales, presentados de forma anónima mientras están en desarrollo.</p>
+
+      <div class="cases">
+        <article class="case">
+          <h3>Una planta de biogás en Argentina</h3>
+          <dl>
+            <div><dt>Desafío</dt><dd>El efluente del biodigestor es hoy un costo de gestión: alto volumen de agua, rico en nutrientes.</dd></div>
+            <div><dt>Enfoque</dt><dd>Biorrefinería por etapas: extraer valor de los componentes —fertilizantes minerales, productos de base biológica— y resolver el excedente líquido.</dd></div>
+            <div class="estado"><dt>Estado</dt><dd>Factibilidad tecnológica y comercial</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <h3>Un bioinsumo agrícola en escalamiento</h3>
+          <dl>
+            <div><dt>Desafío</dt><dd>Un desarrollo científico ya validado que necesita pasar a escala industrial y comercial.</dd></div>
+            <div><dt>Enfoque</dt><dd>Regulatorio, estructura de negocio y alianzas, modelo financiero y búsqueda de financiamiento.</dd></div>
+            <div class="estado"><dt>Estado</dt><dd>Estructuración de la alianza</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="equipo" class="divider" aria-labelledby="eq-h">
+    <div class="wrap">
+      <p class="eyebrow">Equipo</p>
+      <h2 id="eq-h">Tres capacidades, una mesa</h2>
+      <div class="team">
+        <div class="member">
+          <div class="mono" aria-hidden="true">AB</div>
+          <h3>Andrés S. Basso</h3>
+          <p class="role">Dirección técnica, I+D y desarrollo de producto</p>
+          <p>Ingeniero Químico y Máster en Ciencias (Suelos), Iowa State University. Procesos, biotecnología, fertilizantes y nutrición animal. Socio fundador y director general de una empresa de bebidas y biotecnología.</p>
+        </div>
+        <div class="member">
+          <div class="mono" aria-hidden="true">SB</div>
+          <h3>Sebastián Pompeo Bizzi</h3>
+          <p class="role">Inteligencia tecnológica, análisis económico e IA</p>
+          <p>Economista y Magíster en Administración de Activos Financieros. Más de 20 años en estrategia y finanzas. Desarrolló la plataforma de agentes de IA. Coordinador de Datos y Proyectos Estratégicos del Clúster de Biotecnología de Córdoba.</p>
+        </div>
+        <div class="member">
+          <div class="mono" aria-hidden="true">PD</div>
+          <h3>Pablo Javier Díaz Azulay</h3>
+          <p class="role">Dirección ejecutiva, vinculación y negocio</p>
+          <p>Más de 20 años en modelos de negocio, gestión de proyectos complejos, articulación institucional y alianzas. Clúster Manager del Clúster de Biotecnología de Córdoba.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="valores" class="divider" aria-labelledby="vl-h">
+    <div class="wrap">
+      <p class="eyebrow">Valores</p>
+      <h2 id="vl-h">Lo que nos mueve</h2>
+      <div class="values">
+        <div class="value"><span class="k">Honestidad</span><p>Decimos lo que vemos, aun cuando no es la respuesta esperada.</p></div>
+        <div class="value"><span class="k">Disciplina</span><p>Método, etapas e hitos verificables para avanzar y reducir riesgos.</p></div>
+        <div class="value"><span class="k">Innovación</span><p>Cuestionamos las respuestas conocidas. Innovar no es complicar: es encontrar una forma mejor.</p></div>
+        <div class="value"><span class="k">Pasión</span><p>Nos involucramos a fondo en cada desafío, con curiosidad y perseverancia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="divider contact" aria-labelledby="co-h">
+    <div class="wrap">
+      <p class="eyebrow">Contacto</p>
+      <h2 id="co-h">Contanos tu problema</h2>
+      <p class="lead muted prose">Se puede entrar por muchas puertas: un sector, un dolor concreto, una tecnología ociosa, una planta o un recurso a valorizar, o una empresa con ganas de crear algo nuevo.</p>
+      <a class="mailto" href="mailto:hola@criza.bio">hola@criza.bio</a>
+      <p class="doors">
+        Sector&nbsp;&nbsp;·&nbsp;&nbsp;Dolor&nbsp;&nbsp;·&nbsp;&nbsp;Tecnología&nbsp;&nbsp;·&nbsp;&nbsp;Planta o recurso&nbsp;&nbsp;·&nbsp;&nbsp;Empresa
+      </p>
+      <div class="direct">
+        <span class="k">Contacto directo</span>
+        <ul>
+          <li>Andrés S. Basso — <a href="tel:">(número por completar)</a></li>
+          <li>Sebastián Pompeo Bizzi — <a href="tel:">(número por completar)</a></li>
+          <li>Pablo Javier Díaz Azulay — <a href="tel:">(número por completar)</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="id">CRIZA · criza.bio</span>
+    <span class="note">Versión preliminar. Logotipo final en integración.</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById("theme");
+    var stored = null;
+    try { stored = localStorage.getItem("criza-theme"); } catch (e) {}
+    if (stored === "light" || stored === "dark") root.setAttribute("data-theme", stored);
+
+    function current() {
+      var t = root.getAttribute("data-theme");
+      if (t) return t;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    btn.addEventListener("click", function () {
+      var next = current() === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("criza-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+
+</body>
+</html>
