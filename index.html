@@ -180,10 +180,17 @@
   section { padding-block: clamp(4rem, 9vw, 7rem); }
   .divider { border-top: 1px solid var(--line); }
   .eyebrow {
+    position: relative; padding-left: 1.15rem;
     font-family: var(--font-label);
     font-size: .74rem; letter-spacing: .2em; text-transform: uppercase;
     color: var(--husk); margin: 0 0 1.4rem;
   }
+  .eyebrow::before {
+    content: ""; position: absolute; left: 0; top: .42em;
+    width: 8px; height: 8px; border-radius: 999px;
+    background: var(--dot, var(--husk));
+  }
+  .stages-sec .eyebrow::before { background: #DB7C40; }
   h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; line-height: 1.14; }
   h2 { font-size: clamp(1.7rem, 3.4vw, 2.35rem); margin: 0 0 1.1rem; letter-spacing: 0; }
   h3 { font-size: 1.3rem; margin: 0 0 .4rem; }
@@ -255,26 +262,30 @@
   /* ---- el nombre band ---- */
   .band { background: var(--husk-soft); border-block: 1px solid var(--line); }
   .band .big {
-    font-family: var(--font-display);
-    font-size: clamp(1.9rem, 4vw, 2.8rem);
-    font-weight: 400;
-    line-height: 1.14;
-    letter-spacing: -.015em;
-    margin: 0 0 1.2rem;
-    max-width: 22ch;
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.08; letter-spacing: -.018em;
+    margin: 0 0 1.4rem; max-width: 16ch;
   }
-  .band p { max-width: 54ch; color: var(--ink); }
+  .band .big em { font-style: italic; }
+  .band p {
+    max-width: 52ch; color: var(--ink);
+    font-size: clamp(1.05rem, 1.5vw, 1.18rem); line-height: 1.65;
+  }
 
   /* ---- strands (que hacemos) ---- */
-  .strands { margin-top: 2.5rem; border-top: 1px solid var(--line); }
+  .strands { margin-top: clamp(2.4rem, 5vw, 3.4rem); border-top: 1px solid var(--line); }
   .strand {
-    display: grid; grid-template-columns: 1fr; gap: .3rem;
-    padding: 1.6rem 0; border-bottom: 1px solid var(--line);
+    display: grid; grid-template-columns: 1fr; gap: .4rem;
+    padding: clamp(1.6rem, 3vw, 2.2rem) 0; border-bottom: 1px solid var(--line);
   }
-  .strand h3 { font-size: 1.35rem; margin: 0; }
-  .strand p { margin: 0; max-width: 60ch; color: var(--stone); }
+  .strand h3 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(1.35rem, 2.2vw, 1.7rem); line-height: 1.2; margin: 0;
+  }
+  .strand p { margin: 0; max-width: 58ch; color: var(--stone); line-height: 1.6; }
   @media (min-width: 720px) {
-    .strand { grid-template-columns: 15rem 1fr; gap: 2rem; align-items: baseline; }
+    .strand { grid-template-columns: 16rem 1fr; gap: 2.5rem; align-items: baseline; }
   }
 
   /* ---- stages: seccion "camara" (fondo oscuro fijo, no depende del tema) ---- */
@@ -324,64 +335,106 @@
   .stage.s5 h3, .stage.s5 .stage-num { color: #9FD0BA; }
 
   /* ---- modelo (points) ---- */
-  .points { margin-top: 2.4rem; display: grid; gap: 0; }
+  .points { margin-top: clamp(2.2rem, 5vw, 3rem); display: grid; }
   .point {
-    padding: 1.4rem 0; border-top: 1px solid var(--line);
-    display: grid; grid-template-columns: 1fr; gap: .3rem;
+    padding: clamp(1.3rem, 2.6vw, 1.8rem) 0; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 1fr; gap: .35rem;
   }
   .point:last-child { border-bottom: 1px solid var(--line); }
-  .point .k { font-family: var(--font-label); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--husk); }
-  .point p { margin: 0; max-width: 58ch; }
-  @media (min-width: 720px) { .point { grid-template-columns: 12rem 1fr; gap: 2rem; align-items: baseline; } }
+  .point .k { font-family: var(--font-label); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--husk); }
+  .point p { margin: 0; max-width: 56ch; line-height: 1.6; }
+  @media (min-width: 720px) { .point { grid-template-columns: 11rem 1fr; gap: 2.5rem; align-items: baseline; } }
 
-  /* ---- casos ---- */
-  .cases { margin-top: 2.6rem; display: grid; gap: 2.6rem; }
-  @media (min-width: 820px) { .cases { grid-template-columns: 1fr 1fr; gap: 3rem; } }
-  .case { border-top: 2px solid var(--ink); padding-top: 1.2rem; }
-  .case h3 { font-size: 1.35rem; margin-bottom: 1rem; }
-  .case dl { margin: 0; display: grid; gap: .9rem; }
-  .case dt {
-    font-family: var(--font-label); font-size: .72rem; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--husk); margin-bottom: .15rem;
+  /* ---- casos: expedientes ---- */
+  .cases { margin-top: clamp(2.8rem, 6vw, 4.2rem); display: grid; gap: clamp(2.6rem, 5vw, 3.6rem); }
+  @media (min-width: 860px) { .cases { grid-template-columns: 1fr 1fr; gap: clamp(2.6rem, 5vw, 4rem); perspective: 1600px; } }
+  .case {
+    position: relative; background: var(--surface);
+    border: 1px solid var(--line); border-left: 6px solid var(--case-accent, var(--husk));
+    border-radius: 2px;
+    padding: clamp(1.8rem, 3.2vw, 2.7rem) clamp(1.5rem, 3vw, 2.4rem) clamp(1.7rem, 3vw, 2.4rem);
+    box-shadow: 0 1px 2px rgba(1,4,11,.05), 0 22px 45px -26px rgba(1,4,11,.22);
+    transition: transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s;
   }
-  .case dd { margin: 0; color: var(--stone); }
-  .case .estado dd { color: var(--emergence); font-family: var(--font-label); font-size: .85rem; }
+  .case:nth-child(2) { --case-accent: var(--emergence-2); }
+  .case::before {
+    content: ""; position: absolute; top: -13px; left: 26px;
+    width: 92px; height: 13px; background: var(--surface);
+    border: 1px solid var(--line); border-bottom: 0; border-radius: 4px 4px 0 0;
+  }
+  .case-tag {
+    font-family: var(--font-label); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--case-accent, var(--husk)); display: block; margin: 0 0 .85rem;
+  }
+  .case h3 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem); line-height: 1.18; margin: 0 0 1.3rem;
+  }
+  .case dl { margin: 0; display: grid; gap: 1rem; }
+  .case dt {
+    font-family: var(--font-label); font-size: .66rem; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--stone); margin-bottom: .25rem;
+  }
+  .case dd { margin: 0; color: var(--ink); line-height: 1.55; font-size: .98rem; }
+  .case .estado dd {
+    color: var(--case-accent, var(--husk)); font-family: var(--font-label);
+    font-size: .82rem; letter-spacing: .03em;
+  }
+  @media (min-width: 860px) {
+    .case { transform: rotateY(-4.5deg); transform-origin: left center; }
+    .case:nth-child(2) { transform: rotateY(4.5deg); transform-origin: right center; }
+    .case:hover { transform: rotateY(0); box-shadow: 0 2px 4px rgba(1,4,11,.06), 0 40px 72px -30px rgba(1,4,11,.32); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case, .case:nth-child(2), .case:hover { transform: none; transition: none; }
+  }
 
   /* ---- equipo ---- */
-  .team { margin-top: 2.6rem; display: grid; gap: 2.4rem; }
-  @media (min-width: 820px) { .team { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+  .team { margin-top: clamp(2.6rem, 5vw, 3.4rem); display: grid; gap: clamp(2.2rem, 4vw, 2.8rem); }
+  @media (min-width: 820px) { .team { grid-template-columns: repeat(3, 1fr); gap: 2.4rem; } }
   .member .mono {
-    width: 64px; height: 64px; border-radius: 999px; overflow: hidden;
-    background: var(--husk-soft); color: var(--husk);
+    width: 100%; aspect-ratio: 1 / 1; border-radius: 2px; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line); color: var(--faint);
     display: grid; place-items: center;
-    font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .04em;
-    margin-bottom: 1rem;
+    font-family: var(--font-display); font-size: 1.7rem; letter-spacing: .04em;
+    margin-bottom: 1.1rem;
   }
-  .member .mono img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .member h3 { font-size: 1.2rem; margin-bottom: .25rem; }
+  .member .mono img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: grayscale(1) contrast(1.03); transition: filter .5s ease;
+  }
+  .member:hover .mono img { filter: grayscale(0); }
+  .member h3 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.2; margin-bottom: .3rem;
+  }
   .member .role {
-    font-family: var(--font-label); font-size: .74rem; letter-spacing: .04em;
-    color: var(--husk); margin: 0 0 .7rem;
+    font-family: var(--font-label); font-size: .7rem; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--husk); margin: 0 0 .8rem;
   }
-  .member p { margin: 0; font-size: .96rem; color: var(--stone); line-height: 1.65; }
+  .member p { margin: 0; font-size: .93rem; color: var(--stone); line-height: 1.6; }
 
   /* ---- valores ---- */
-  .values { margin-top: 2.4rem; display: grid; gap: 1.8rem; }
-  @media (min-width: 620px) { .values { grid-template-columns: 1fr 1fr; gap: 1.8rem 3rem; } }
-  @media (min-width: 960px) { .values { grid-template-columns: repeat(4, 1fr); } }
-  .value .k { font-family: var(--font-display); font-size: 1.15rem; display: block; margin-bottom: .35rem; }
-  .value p { margin: 0; font-size: .93rem; color: var(--stone); line-height: 1.6; }
+  .values { margin-top: clamp(2.4rem, 5vw, 3rem); display: grid; gap: 2rem; }
+  @media (min-width: 620px) { .values { grid-template-columns: 1fr 1fr; gap: 2rem 3rem; } }
+  @media (min-width: 980px) { .values { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; } }
+  .value { border-top: 1px solid var(--line); padding-top: 1rem; }
+  .value .k {
+    font-family: var(--font-display); font-weight: 400; font-size: 1.2rem;
+    display: block; margin-bottom: .5rem;
+  }
+  .value p { margin: 0; font-size: .92rem; color: var(--stone); line-height: 1.55; }
 
   /* ---- contacto ---- */
-  .contact h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+  .contact h2 { font-size: clamp(2.1rem, 4.5vw, 3.1rem); }
   .mailto {
-    display: inline-block; margin: 1.4rem 0 1.6rem;
-    font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    display: inline-block; margin: clamp(1.4rem, 3vw, 2rem) 0 1.6rem;
+    font-family: var(--font-display); font-size: clamp(1.6rem, 3.6vw, 2.4rem);
     color: var(--husk); text-decoration: none;
-    border-bottom: 2px solid var(--emergence);
-    padding-bottom: .15rem;
+    border-bottom: 2px solid var(--emergence-2); padding-bottom: .12rem;
+    transition: color .2s, border-color .2s;
   }
-  .mailto:hover { color: var(--emergence); }
+  .mailto:hover { color: var(--emergence); border-color: var(--emergence); }
   .doors {
     font-family: var(--font-label); font-size: .8rem; color: var(--stone);
     line-height: 2; letter-spacing: .02em;
@@ -397,7 +450,11 @@
   .direct a:hover { color: var(--emergence); }
 
   /* ---- footer ---- */
-  footer { border-top: 1px solid var(--line); padding-block: 2.6rem; }
+  footer { position: relative; border-top: 1px solid var(--line); padding-block: clamp(2.4rem, 5vw, 3.4rem); }
+  footer::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+    background: linear-gradient(90deg, var(--husk), #FB7713 36%, #6F9D80 66%, var(--emergence));
+  }
   footer .wrap { display: flex; flex-wrap: wrap; gap: .6rem 2rem; justify-content: space-between; align-items: baseline; }
   footer .id { font-family: var(--font-display); letter-spacing: .14em; }
   footer .note { font-family: var(--font-label); font-size: .72rem; color: var(--faint); letter-spacing: .02em; max-width: 40ch; }
@@ -449,14 +506,14 @@
   <section class="band" aria-labelledby="nombre-h">
     <div class="wrap">
       <p class="eyebrow">El nombre</p>
-      <p class="big" id="nombre-h">CRIZA viene de crisálida.</p>
+      <p class="big" id="nombre-h">CRIZA viene de <em>crisálida</em>.</p>
       <p>El paso de la ciencia a la industria es una metamorfosis. Mientras ocurre no tiene la belleza del estado final: exige método, trabajo y etapas. Pero es lo que hace que lo que emerge —una tecnología, un producto, un negocio— salga fuerte y pueda volar. Nuestro lugar es adentro de ese proceso, en todas sus etapas —incluida la implementación.</p>
     </div>
   </section>
 
   <section id="que-hacemos" aria-labelledby="qh-h">
     <div class="wrap">
-      <p class="eyebrow">Qué hacemos</p>
+      <p class="eyebrow" style="--dot:#DA7A2E">Qué hacemos</p>
       <h2 id="qh-h">Una sola mesa con todas las capacidades que un desarrollo necesita</h2>
       <p class="lead muted prose">Partimos de un problema concreto y lo analizamos desde una perspectiva integral —técnica, científica, ambiental, económica y comercial. A partir de ahí identificamos oportunidades que suelen quedar ocultas, y construimos la solución y el negocio desde las primeras etapas.</p>
 
@@ -526,7 +583,7 @@
 
   <section id="modelo" class="divider" aria-labelledby="mv-h">
     <div class="wrap">
-      <p class="eyebrow">El modelo</p>
+      <p class="eyebrow" style="--dot:#CE8C3E">El modelo</p>
       <h2 id="mv-h">Un socio en el desarrollo y en el negocio</h2>
       <div class="points">
         <div class="point">
@@ -551,12 +608,13 @@
 
   <section id="casos" class="divider" aria-labelledby="cs-h">
     <div class="wrap">
-      <p class="eyebrow">En qué trabajamos</p>
+      <p class="eyebrow" style="--dot:#7FA85E">En qué trabajamos</p>
       <h2 id="cs-h">Casos en curso</h2>
       <p class="muted prose">Casos reales, presentados de forma anónima mientras están en desarrollo.</p>
 
       <div class="cases">
         <article class="case">
+          <span class="case-tag">Expediente · en curso</span>
           <h3>Una planta de biogás en Argentina</h3>
           <dl>
             <div><dt>Desafío</dt><dd>El efluente del biodigestor es hoy un costo de gestión: alto volumen de agua, rico en nutrientes.</dd></div>
@@ -565,6 +623,7 @@
           </dl>
         </article>
         <article class="case">
+          <span class="case-tag">Expediente · en curso</span>
           <h3>Un bioinsumo agrícola en escalamiento</h3>
           <dl>
             <div><dt>Desafío</dt><dd>Un desarrollo científico ya validado que necesita pasar a escala industrial y comercial.</dd></div>
@@ -578,7 +637,7 @@
 
   <section id="equipo" class="divider" aria-labelledby="eq-h">
     <div class="wrap">
-      <p class="eyebrow">Equipo</p>
+      <p class="eyebrow" style="--dot:#4E9A78">Equipo</p>
       <h2 id="eq-h">Tres capacidades, una mesa</h2>
       <div class="team">
         <div class="member">
@@ -605,7 +664,7 @@
 
   <section id="valores" class="divider" aria-labelledby="vl-h">
     <div class="wrap">
-      <p class="eyebrow">Valores</p>
+      <p class="eyebrow" style="--dot:#2E7C58">Valores</p>
       <h2 id="vl-h">Lo que nos mueve</h2>
       <div class="values">
         <div class="value"><span class="k">Honestidad</span><p>Decimos lo que vemos, aun cuando no es la respuesta esperada.</p></div>
@@ -618,7 +677,7 @@
 
   <section id="contacto" class="divider contact" aria-labelledby="co-h">
     <div class="wrap">
-      <p class="eyebrow">Contacto</p>
+      <p class="eyebrow" style="--dot:#1C593D">Contacto</p>
       <h2 id="co-h">Contanos tu problema</h2>
       <p class="lead muted prose">Se puede entrar por muchas puertas: un sector, un dolor concreto, una tecnología ociosa, una planta o un recurso a valorizar, o una empresa con ganas de crear algo nuevo.</p>
       <a class="mailto" href="mailto:hola@criza.bio">hola@criza.bio</a>
