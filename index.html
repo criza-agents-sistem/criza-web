@@ -125,22 +125,16 @@
   }
   .mark {
     display: inline-flex; align-items: center;
-    text-decoration: none; color: var(--ink);
+    text-decoration: none;
     padding-block: 4px;
   }
   .mark-img { height: 26px; width: auto; display: block; }
-  .mark-txt {
-    display: none;
-    font-family: var(--font-body); font-weight: 700;
-    font-size: 1.15rem; letter-spacing: .2em; white-space: nowrap;
-  }
-  .mark-txt .a { color: var(--husk); }
+  /* Sin version del logo para fondo oscuro todavia: se muestra el mismo logo sobre
+     una placa clara para que se lea. Reemplazar por el archivo claro cuando llegue. */
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .mark-img { display: none; }
-    :root:not([data-theme="light"]) .mark-txt { display: inline; }
+    :root:not([data-theme="light"]) .mark { background: #F4F2EC; padding: 5px 10px; border-radius: 7px; }
   }
-  :root[data-theme="dark"] .mark-img { display: none; }
-  :root[data-theme="dark"] .mark-txt { display: inline; }
+  :root[data-theme="dark"] .mark { background: #F4F2EC; padding: 5px 10px; border-radius: 7px; }
   .nav {
     display: flex; gap: 1.6rem; margin-left: auto;
     font-family: var(--font-label);
@@ -387,7 +381,7 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="mark" href="#top" aria-label="CRIZA — inicio"><img class="mark-img" src="assets/logo.png" alt="CRIZA" width="1079" height="348"><span class="mark-txt" aria-hidden="true">CRIZ<span class="a">A</span></span></a>
+    <a class="mark" href="#top" aria-label="CRIZA — inicio"><img class="mark-img" src="assets/logo.png" alt="CRIZA" width="1079" height="348"></a>
     <nav class="nav" aria-label="Secciones">
       <a href="#que-hacemos">Qué hacemos</a>
       <a href="#como-trabajamos">Cómo trabajamos</a>
