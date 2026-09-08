@@ -215,8 +215,10 @@
   .net-sec > .wrap { position: relative; z-index: 2; }
   .net-sec::after {
     content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: rgba(252,252,251,.62);
-    background: color-mix(in srgb, var(--ground) 60%, transparent);
+    background: linear-gradient(100deg,
+      var(--ground) 0%, var(--ground) 36%,
+      color-mix(in srgb, var(--ground) 62%, transparent) 56%,
+      color-mix(in srgb, var(--ground) 34%, transparent) 100%);
   }
   .hero-eyebrow {
     font-family: var(--font-label); font-size: .72rem; letter-spacing: .22em;
