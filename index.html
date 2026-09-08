@@ -186,7 +186,7 @@
   .hero-net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
   .hero::before {
     content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(100deg, var(--ground) 4%, var(--ground) 30%, transparent 74%);
+    background: linear-gradient(100deg, var(--ground) 3%, var(--ground) 25%, transparent 68%);
   }
   .hero .wrap { position: relative; z-index: 2; }
   .hero-main { position: relative; }
@@ -670,8 +670,8 @@
     var t = document.documentElement.getAttribute("data-theme");
     var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
     return dark
-      ? { warm: [251,110,26], mid: [252,168,64], cool: [110,190,150], line: 0.82, node: 1.0, dot: 0.78 }
-      : { warm: [244,70,10],  mid: [250,140,20], cool: [30,138,88],   line: 0.62, node: 1.0, dot: 0.70 };
+      ? { warm: [252,112,28], mid: [253,172,66], cool: [96,204,152], line: 0.95, node: 1.0, dot: 0.92 }
+      : { warm: [244,66,8],   mid: [251,138,14], cool: [20,156,96],  line: 0.80, node: 1.0, dot: 0.88 };
   }
   function mix(a, b, t) {
     return [Math.round(a[0]+(b[0]-a[0])*t), Math.round(a[1]+(b[1]-a[1])*t), Math.round(a[2]+(b[2]-a[2])*t)];
@@ -687,11 +687,11 @@
     canvas.width = W * DPR; canvas.height = H * DPR;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    var n = Math.round((W * H) / 10500);
-    n = Math.max(30, Math.min(window.innerWidth < 700 ? 58 : 140, n));
+    var n = Math.round((W * H) / 10000);
+    n = Math.max(34, Math.min(window.innerWidth < 700 ? 66 : 125, n));
     pts = [];
     for (var i = 0; i < n; i++) {
-      pts.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.28, vy: (Math.random()-0.5)*0.28 });
+      pts.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5 });
     }
   }
   function frame(step) {
@@ -701,10 +701,14 @@
     if (step) {
       for (var i = 0; i < pts.length; i++) {
         var a = pts[i];
+        a.vx += (Math.random() - 0.5) * 0.05;
+        a.vy += (Math.random() - 0.5) * 0.05;
+        var sp = Math.hypot(a.vx, a.vy);
+        if (sp > 0.95) { a.vx = a.vx / sp * 0.95; a.vy = a.vy / sp * 0.95; }
         a.x += a.vx; a.y += a.vy;
         if (finePointer.matches && mouse.on) {
           var mx = a.x - mouse.x, my = a.y - mouse.y, md = Math.hypot(mx, my);
-          if (md < 120 && md > 0.01) { a.x += (mx/md)*(1-md/120)*0.9; a.y += (my/md)*(1-md/120)*0.9; }
+          if (md < 170 && md > 0.01) { a.x += (mx/md)*(1-md/170)*1.8; a.y += (my/md)*(1-md/170)*1.8; }
         }
         if (a.x < 0 || a.x > W) a.vx *= -1;
         if (a.y < 0 || a.y > H) a.vy *= -1;
@@ -717,16 +721,25 @@
         var b = pts[j];
         var dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
         if (d > LINK) continue;
-        var c = ramp(p, ((a.x + b.x) / 2) / W);
-        ctx.strokeStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + ((1 - d/LINK) * p.line).toFixed(3) + ")";
-        ctx.lineWidth = 1.15;
+        var alpha = ((1 - d/LINK) * p.line).toFixed(3);
+        var ca = ramp(p, a.x / W), cb = ramp(p, b.x / W);
+        var g = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+        g.addColorStop(0, "rgba(" + ca[0] + "," + ca[1] + "," + ca[2] + "," + alpha + ")");
+        g.addColorStop(1, "rgba(" + cb[0] + "," + cb[1] + "," + cb[2] + "," + alpha + ")");
+        ctx.strokeStyle = g;
+        ctx.lineWidth = 1.25;
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
         if (d < NODE) {
           var nx = (a.x + b.x) / 2, ny = (a.y + b.y) / 2, k = 1 - d/NODE;
+          var c = ramp(p, nx / W);
+          ctx.save();
+          ctx.shadowColor = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (0.6 * k).toFixed(3) + ")";
+          ctx.shadowBlur = 13;
           ctx.fillStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (p.node * k).toFixed(3) + ")";
-          ctx.beginPath(); ctx.arc(nx, ny, 3.2, 0, 6.2832); ctx.fill();
-          ctx.strokeStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (0.3 * k).toFixed(3) + ")";
-          ctx.beginPath(); ctx.arc(nx, ny, 7.5, 0, 6.2832); ctx.stroke();
+          ctx.beginPath(); ctx.arc(nx, ny, 3.7, 0, 6.2832); ctx.fill();
+          ctx.restore();
+          ctx.strokeStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (0.34 * k).toFixed(3) + ")";
+          ctx.beginPath(); ctx.arc(nx, ny, 9, 0, 6.2832); ctx.stroke();
         }
       }
     }
