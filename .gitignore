@@ -3,3 +3,8 @@ Thumbs.db
 .vercel
 node_modules/
 *.log
+
+# fotos fuente sin procesar (las servidas son foto-*.jpg)
+assets/Foto Sebastián Bizzi.jpg
+assets/foto andres .png
+assets/foto_pablo.jpeg
