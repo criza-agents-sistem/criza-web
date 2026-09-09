@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Sebastián Pompeo Bizzi — CRIZA. Guardá mi contacto.">
-<meta name="theme-color" content="#F1EEE6">
+<meta name="theme-color" content="#EFEBE2">
 <meta property="og:title" content="Sebastián Pompeo Bizzi · CRIZA">
 <meta property="og:description" content="Guardá mi contacto y conocé CRIZA — plataforma de innovación aplicada.">
 <meta property="og:type" content="profile">
@@ -14,11 +14,10 @@
 <title>Sebastián Pompeo Bizzi · CRIZA</title>
 <style>
   :root {
-    --page: #F1EEE6; --card: #FFFFFF; --ink: #01040B; --dim: #55605A; --faint: #8C948D;
-    --line: #E4E2DA; --husk: #BE4B1C; --green: #1C593D;
+    --page: #EFEBE2; --card: #FFFFFF; --ink: #01040B; --dim: #55605A; --faint: #8C948D;
+    --line: #E4E2DA; --husk: #C24E1B; --green: #1C593D;
     --f-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
     --f-body: "Quicksand", "Helvetica Neue", Arial, sans-serif;
-    --f-label: "Cinzel", "Times New Roman", serif;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
@@ -32,65 +31,67 @@
   .card {
     width: 100%; max-width: 440px; background: var(--card);
     border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
-    box-shadow: 0 1px 2px rgba(1,4,11,.04), 0 30px 60px -30px rgba(1,4,11,.22);
+    box-shadow: 0 1px 2px rgba(1,4,11,.04), 0 34px 64px -30px rgba(1,4,11,.26);
   }
-  .hdr { position: relative; height: 172px; background: #FBF7F0; border-bottom: 1px solid var(--line); }
+  .hdr { position: relative; height: 214px; background: #FAF4E9; border-bottom: 1px solid var(--line); }
   .hdr .net { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .hdr .logo {
-    position: absolute; left: 24px; bottom: 20px; width: 116px; height: 29px;
+    position: absolute; left: 24px; bottom: 20px; width: 124px; height: 31px;
     background: var(--ink);
     -webkit-mask: url("/assets/logo.svg") no-repeat left center / contain;
             mask: url("/assets/logo.svg") no-repeat left center / contain;
   }
   .body { padding: 26px 24px 20px; }
   .photo {
-    width: 78px; height: 78px; border-radius: 999px; border: 1px solid var(--line);
+    width: 82px; height: 82px; border-radius: 999px; border: 1px solid var(--line);
     background: #F2EEE4; color: var(--faint); display: grid; place-items: center;
-    font-family: var(--f-serif); font-size: 1.5rem; letter-spacing: .02em;
-    margin-bottom: 16px; overflow: hidden;
+    font-family: var(--f-serif); font-size: 1.6rem; letter-spacing: .02em;
+    margin-bottom: 18px; overflow: hidden;
   }
   .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   h1 {
-    font-family: var(--f-serif); font-weight: 400; font-size: 1.7rem;
-    line-height: 1.12; margin: 0 0 .35rem; text-wrap: balance;
+    font-family: var(--f-serif); font-weight: 400; font-size: 1.95rem;
+    line-height: 1.1; margin: 0 0 .5rem; text-wrap: balance;
   }
   .org {
-    font-family: var(--f-label); font-size: .64rem; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--husk); margin: 0 0 22px;
+    position: relative; padding-left: 17px;
+    font-size: .8rem; font-weight: 600; color: var(--dim); margin: 0 0 24px;
+  }
+  .org::before {
+    content: ""; position: absolute; left: 0; top: .5em;
+    width: 9px; height: 9px; border-radius: 999px; background: var(--husk);
   }
   .btn {
-    display: flex; align-items: center; justify-content: center; gap: .55rem;
-    font-family: var(--f-label); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    font-family: var(--f-body); font-size: .95rem; font-weight: 600; letter-spacing: 0;
     text-decoration: none; color: var(--ink);
     border: 1px solid var(--line); background: transparent;
-    padding: 15px 16px; border-radius: 11px; width: 100%; cursor: pointer;
+    padding: 14px 16px; border-radius: 12px; width: 100%; cursor: pointer;
     transition: border-color .2s, background .2s, transform .1s;
     -webkit-appearance: none; appearance: none;
   }
   .btn:active { transform: scale(.985); background: rgba(1,4,11,.03); }
-  .btn svg { width: 16px; height: 16px; flex: none; }
+  .btn svg { width: 17px; height: 17px; flex: none; }
   .btn-primary { background: var(--ink); border-color: var(--ink); color: var(--card); font-weight: 700; }
-  .btn-ghost { color: var(--dim); border-color: transparent; padding: 12px 16px; }
+  .btn-ghost { color: var(--dim); border-color: transparent; padding: 12px 16px; font-weight: 500; }
   .row { display: flex; gap: 10px; margin: 10px 0; }
   .row .btn { margin: 0; }
   .btn + .btn { margin-top: 10px; }
   .qr-wrap { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); text-align: center; }
   .qr-wrap .lbl {
-    font-family: var(--f-label); font-size: .58rem; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--faint); margin: 0 0 12px;
+    font-family: var(--f-body); font-size: .82rem; font-weight: 500; color: var(--faint); margin: 0 0 12px;
   }
   #qr { display: inline-block; padding: 12px; background: #fff; border: 1px solid var(--line); border-radius: 12px; line-height: 0; }
   #qr img, #qr canvas { display: block; }
   footer {
     padding: 16px 24px 22px; border-top: 1px solid var(--line);
-    font-family: var(--f-label); font-size: .56rem; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--faint);
+    font-family: var(--f-body); font-size: .72rem; font-weight: 500; color: var(--faint);
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=DM+Serif+Display&family=Quicksand:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand:wght@400;500;600;700&display=swap">
 </head>
 <body>
 
@@ -110,7 +111,7 @@
     </a>
     <div class="row">
       <a class="btn" href="https://wa.me/5493513584221" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn" href="mailto:hola@criza.bio">Escribir</a>
+      <a class="btn" href="mailto:hola@criza.bio">Email</a>
     </div>
     <a class="btn btn-ghost" href="https://criza.bio" target="_blank" rel="noopener">Ver el sitio &rarr;</a>
     <button class="btn btn-ghost" id="share" type="button">Compartir esta tarjeta</button>
@@ -173,10 +174,12 @@
 
   var c = document.querySelector(".net");
   if (c && c.getContext) {
-    var x = c.getContext("2d"), host = c.parentElement, W = 0, H = 0, DPR = 1, pts = [];
+    var x = c.getContext("2d"), host = c.parentElement;
+    var W = 0, H = 0, DPR = 1, pts = [], raf = 0;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function lerp(p, r, t) { return [Math.round(p[0]+(r[0]-p[0])*t), Math.round(p[1]+(r[1]-p[1])*t), Math.round(p[2]+(r[2]-p[2])*t)]; }
     function ramp(t) {
-      var w = [190,75,28], m = [201,130,60], g = [28,89,61];
+      var w = [232,92,26], m = [242,142,32], g = [30,140,90];
       t = t < 0 ? 0 : t > 1 ? 1 : t;
       return t < 0.5 ? lerp(w, m, t * 2) : lerp(m, g, (t - 0.5) * 2);
     }
@@ -185,36 +188,50 @@
       DPR = Math.min(2, window.devicePixelRatio || 1);
       c.width = W * DPR; c.height = H * DPR; c.style.width = W + "px"; c.style.height = H + "px";
       x.setTransform(DPR, 0, 0, DPR, 0, 0);
-      var n = Math.max(12, Math.min(30, Math.round(W * H / 6000)));
+      var n = Math.max(16, Math.min(44, Math.round(W * H / 4400)));
       pts = [];
-      for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H });
+      for (var i = 0; i < n; i++) pts.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.17, vy: (Math.random()-0.5)*0.17 });
     }
-    function draw() {
-      var LINK = Math.min(150, Math.max(90, W / 3));
+    function frame(step) {
+      var LINK = Math.min(160, Math.max(100, W / 2.8));
       x.clearRect(0, 0, W, H);
+      if (step) {
+        for (var i = 0; i < pts.length; i++) {
+          var p = pts[i]; p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+          p.x = Math.max(0, Math.min(W, p.x)); p.y = Math.max(0, Math.min(H, p.y));
+        }
+      }
       for (var i = 0; i < pts.length; i++) {
         var p = pts[i];
         for (var j = i + 1; j < pts.length; j++) {
           var b = pts[j], d = Math.hypot(p.x - b.x, p.y - b.y);
           if (d > LINK) continue;
-          var col = ramp(p.x / W), al = (1 - d / LINK) * 0.5;
+          var col = ramp(p.x / W), al = (1 - d / LINK) * 0.62;
           x.strokeStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + al.toFixed(3) + ")";
-          x.lineWidth = 1.2;
+          x.lineWidth = 1.35;
           x.beginPath(); x.moveTo(p.x, p.y); x.lineTo(b.x, b.y); x.stroke();
-          if (d < 24) {
-            var k = 1 - d / 24;
-            x.fillStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + (k * 0.85).toFixed(3) + ")";
-            x.beginPath(); x.arc((p.x + b.x) / 2, (p.y + b.y) / 2, 2.6, 0, 6.2832); x.fill();
+          if (d < 26) {
+            var k = 1 - d / 26;
+            x.fillStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + (k * 0.95).toFixed(3) + ")";
+            x.beginPath(); x.arc((p.x + b.x) / 2, (p.y + b.y) / 2, 2.9, 0, 6.2832); x.fill();
           }
         }
         var cc = ramp(p.x / W);
-        x.fillStyle = "rgba(" + cc[0] + "," + cc[1] + "," + cc[2] + ",.6)";
-        x.beginPath(); x.arc(p.x, p.y, 1.5, 0, 6.2832); x.fill();
+        x.fillStyle = "rgba(" + cc[0] + "," + cc[1] + "," + cc[2] + ",.72)";
+        x.beginPath(); x.arc(p.x, p.y, 1.7, 0, 6.2832); x.fill();
       }
     }
-    size(); draw();
+    function loop() { frame(true); raf = requestAnimationFrame(loop); }
+    size(); frame(false);
+    if (!reduce) loop();
     var rt;
-    window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { size(); draw(); }, 150); });
+    window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { size(); frame(false); }, 150); });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+      else if (!raf && !reduce) loop();
+    });
   }
 })();
 </script>
