@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Andrés S. Basso — CRIZA. Guardá mi contacto.">
-<meta name="theme-color" content="#EFEBE2">
+<meta name="theme-color" content="#08090D">
 <meta property="og:title" content="Andrés S. Basso · CRIZA">
 <meta property="og:description" content="Guardá mi contacto y conocé CRIZA — de la ciencia a la industria, de principio a fin.">
 <meta property="og:type" content="profile">
@@ -14,7 +14,7 @@
 <link rel="manifest" href="/tarjeta/andres/manifest.json">
 <link rel="apple-touch-icon" href="/tarjeta/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Mi tarjeta">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Andrés S. Basso · CRIZA</title>
@@ -164,10 +164,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand:wght@400;500;600;700&display=swap">
 <script>
   (function () {
-    if (/[?&]tema=oscuro(&|$)/.test(location.search)) {
+    var claro = /[?&]tema=claro(&|$)/.test(location.search);
+    if (!claro) {
       document.documentElement.setAttribute("data-tema", "oscuro");
+    } else {
       var m = document.querySelector('meta[name="theme-color"]');
-      if (m) m.setAttribute("content", "#08090D");
+      if (m) m.setAttribute("content", "#EFEBE2");
     }
   })();
 </script>
@@ -182,7 +184,7 @@
       <span class="logo" role="img" aria-label="CRIZA"></span>
     </div>
     <div class="body">
-      <div class="photo" aria-hidden="true">AB</div>
+      <div class="photo"><img src="/assets/foto-andres.jpg" alt="Andrés S. Basso" width="82" height="82"></div>
       <h1>Andrés S. Basso</h1>
       <p class="org">CRIZA · de la ciencia a la industria, de principio a fin</p>
 
