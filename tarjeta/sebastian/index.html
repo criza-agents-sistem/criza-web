@@ -274,7 +274,7 @@
       x.setTransform(DPR, 0, 0, DPR, 0, 0);
       var n = Math.max(22, Math.min(58, Math.round(W * H / 5200)));
       pts = [];
-      for (var i = 0; i < n; i++) pts.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.16, vy: (Math.random()-0.5)*0.16 });
+      for (var i = 0; i < n; i++) pts.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2 });
     }
     function frame(step) {
       var LINK = Math.min(165, Math.max(110, W / 2.7));
@@ -292,19 +292,19 @@
         for (var j = i + 1; j < pts.length; j++) {
           var b = pts[j], d = Math.hypot(p.x - b.x, p.y - b.y);
           if (d > LINK) continue;
-          var col = ramp(p.x / W), al = (1 - d / LINK) * 0.6;
+          var col = ramp(p.x / W), al = (1 - d / LINK) * 0.68;
           x.strokeStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + al.toFixed(3) + ")";
-          x.lineWidth = 1.35;
+          x.lineWidth = 1.4;
           x.beginPath(); x.moveTo(p.x, p.y); x.lineTo(b.x, b.y); x.stroke();
           if (d < 26) {
             var k = 1 - d / 26;
-            x.fillStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + (k * 0.95).toFixed(3) + ")";
-            x.beginPath(); x.arc((p.x + b.x) / 2, (p.y + b.y) / 2, 2.9, 0, 6.2832); x.fill();
+            x.fillStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + k.toFixed(3) + ")";
+            x.beginPath(); x.arc((p.x + b.x) / 2, (p.y + b.y) / 2, 3.05, 0, 6.2832); x.fill();
           }
         }
         var cc = ramp(p.x / W);
-        x.fillStyle = "rgba(" + cc[0] + "," + cc[1] + "," + cc[2] + ",.72)";
-        x.beginPath(); x.arc(p.x, p.y, 1.7, 0, 6.2832); x.fill();
+        x.fillStyle = "rgba(" + cc[0] + "," + cc[1] + "," + cc[2] + ",.8)";
+        x.beginPath(); x.arc(p.x, p.y, 1.85, 0, 6.2832); x.fill();
       }
     }
     function loop() { frame(true); raf = requestAnimationFrame(loop); }
