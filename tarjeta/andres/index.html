@@ -122,10 +122,55 @@
     font-family: var(--f-body); font-size: .72rem; font-weight: 500; color: var(--faint);
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  /* Variante oscura — se activa con ?tema=oscuro */
+  :root[data-tema="oscuro"] {
+    --page: #08090D; --paper: #12151C; --ink: #ECE7DB; --dim: #A7B0A8; --faint: #79817A;
+    --line: #262B34; --husk: #DB7C40; --green: #6F9D80;
+  }
+  :root[data-tema="oscuro"] body { background: var(--page); }
+  :root[data-tema="oscuro"] .card {
+    border-color: #20242C;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 34px 64px -30px rgba(0,0,0,.75);
+  }
+  :root[data-tema="oscuro"] .card > .veil {
+    background: linear-gradient(180deg,
+      rgba(18,21,28,0)   0px,
+      rgba(18,21,28,.10) 120px,
+      rgba(18,21,28,.52) 210px,
+      rgba(18,21,28,.64) 55%,
+      rgba(18,21,28,.68) 100%);
+  }
+  :root[data-tema="oscuro"] .photo {
+    background: #1B1F27; box-shadow: 0 0 0 5px rgba(18,21,28,.66);
+  }
+  :root[data-tema="oscuro"] .btn {
+    background: rgba(255,255,255,.06); border-color: var(--line); color: var(--ink);
+  }
+  :root[data-tema="oscuro"] .btn:active { background: rgba(255,255,255,.12); }
+  :root[data-tema="oscuro"] .btn-primary {
+    background: var(--ink); border-color: var(--ink); color: #12151C;
+  }
+  :root[data-tema="oscuro"] .btn-primary:active { background: #dcd6c8; }
+  :root[data-tema="oscuro"] .btn-ghost {
+    background: rgba(255,255,255,.04); border-color: transparent; color: var(--dim);
+  }
+  :root[data-tema="oscuro"] #qr {
+    border-color: #20242C; box-shadow: 0 0 0 6px rgba(18,21,28,.6);
+  }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand:wght@400;500;600;700&display=swap">
+<script>
+  (function () {
+    if (/[?&]tema=oscuro(&|$)/.test(location.search)) {
+      document.documentElement.setAttribute("data-tema", "oscuro");
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", "#08090D");
+    }
+  })();
+</script>
 </head>
 <body>
 
