@@ -57,7 +57,7 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --ground: #06080E;
-      --surface: #0B0F17;
+      --surface: #111722;
       --ink: #EEECE4;
       --stone: #99A29B;
       --faint: #5C645E;
@@ -75,7 +75,7 @@
   }
   :root[data-theme="dark"] {
     --ground: #06080E;
-    --surface: #0B0F17;
+    --surface: #111722;
     --ink: #EEECE4;
     --stone: #99A29B;
     --faint: #5C645E;
@@ -315,7 +315,15 @@
   }
 
   /* ---- stages: seccion "camara" (fondo oscuro fijo, no depende del tema) ---- */
-  .stages-sec { background: #01040B; color: #ECE7DB; padding: clamp(4rem, 10vw, 7.5rem) 0; }
+  .stages-sec { position: relative; background: linear-gradient(180deg, #01040B, #0C1016); color: #ECE7DB; padding: clamp(4rem, 10vw, 7.5rem) 0; }
+  /* marco sutil de las secciones camara: hilo con el degrade de marca arriba y abajo */
+  .stages-sec::before, .stages-sec::after,
+  #valores::before, #valores::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 2px; z-index: 4; pointer-events: none;
+    background: linear-gradient(90deg, var(--husk), #FB7713 36%, #6F9D80 66%, var(--emergence));
+  }
+  .stages-sec::before, #valores::before { top: 0; }
+  .stages-sec::after, #valores::after { bottom: 0; }
   .stages-main { position: relative; padding-left: 1.6rem; }
   .stages-sec .eyebrow { color: #DB7C40; margin: 0 0 1.4rem; }
   .stages-sec h2 {
@@ -392,6 +400,16 @@
     .case:hover { transform: none; }
   }
   .case:nth-child(2) { --case-accent: var(--emergence-2); }
+  /* casos en oscuro: superficie mas clara y borde en el color del acento */
+  :root[data-theme="dark"] .case {
+    background: #131A26;
+    border-color: color-mix(in srgb, var(--case-accent, var(--husk)) 55%, var(--line));
+    box-shadow: 0 1px 2px rgba(0,0,0,.35), 0 24px 50px -26px rgba(0,0,0,.7);
+  }
+  :root[data-theme="dark"] .case:hover {
+    border-color: color-mix(in srgb, var(--case-accent, var(--husk)) 85%, transparent);
+    box-shadow: 0 2px 6px rgba(0,0,0,.42), 0 32px 64px -26px rgba(0,0,0,.8);
+  }
   .case-tag {
     font-family: var(--font-label); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
     color: var(--stone); display: block; margin: 0 0 1rem;
@@ -436,7 +454,7 @@
   .member p { margin: 0; font-size: .93rem; color: var(--stone); line-height: 1.6; }
 
   /* ---- valores: seccion oscura (el nucleo) ---- */
-  #valores { background: #01040B; color: #ECE7DB; padding-block: clamp(4.5rem, 10vw, 7.5rem); }
+  #valores { position: relative; background: linear-gradient(180deg, #01040B, #0C1016); color: #ECE7DB; padding-block: clamp(4.5rem, 10vw, 7.5rem); border-top: 0; }
   #valores .eyebrow { color: #DB7C40; }
   #valores .eyebrow::before { background: #6F9D80; }
   #valores h2 { color: #F4F1E9; }
