@@ -14,7 +14,7 @@
 <title>Pablo Javier Díaz Azulay · CRIZA</title>
 <style>
   :root {
-    --page: #EFEBE2; --card: #FFFFFF; --ink: #01040B; --dim: #55605A; --faint: #8C948D;
+    --page: #EFEBE2; --paper: #F7F1E4; --ink: #01040B; --dim: #55605A; --faint: #8C948D;
     --line: #E4E2DA; --husk: #C24E1B; --green: #1C593D;
     --f-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
     --f-body: "Quicksand", "Helvetica Neue", Arial, sans-serif;
@@ -29,24 +29,40 @@
     display: flex; justify-content: center;
   }
   .card {
-    width: 100%; max-width: 440px; background: var(--card);
+    position: relative; isolation: isolate;
+    width: 100%; max-width: 440px; background: var(--paper);
     border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
     box-shadow: 0 1px 2px rgba(1,4,11,.04), 0 34px 64px -30px rgba(1,4,11,.26);
   }
-  .hdr { position: relative; height: 214px; background: #FAF4E9; border-bottom: 1px solid var(--line); }
-  .hdr .net { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .card > .net {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%; display: block;
+  }
+  /* Velo: deja la red a plena fuerza arriba y la atenúa detrás del texto */
+  .card > .veil {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(247,241,228,0)   0px,
+      rgba(247,241,228,.10) 120px,
+      rgba(247,241,228,.52) 210px,
+      rgba(247,241,228,.64) 55%,
+      rgba(247,241,228,.68) 100%);
+  }
+  .inner { position: relative; z-index: 2; }
+  .hdr { position: relative; height: 196px; }
   .hdr .logo {
     position: absolute; left: 24px; bottom: 20px; width: 124px; height: 31px;
     background: var(--ink);
     -webkit-mask: url("/assets/logo.svg") no-repeat left center / contain;
             mask: url("/assets/logo.svg") no-repeat left center / contain;
   }
-  .body { padding: 26px 24px 20px; }
+  .body { padding: 24px 24px 20px; }
   .photo {
     width: 82px; height: 82px; border-radius: 999px; border: 1px solid var(--line);
-    background: #F2EEE4; color: var(--faint); display: grid; place-items: center;
+    background: #F1EBDD; color: var(--faint); display: grid; place-items: center;
     font-family: var(--f-serif); font-size: 1.6rem; letter-spacing: .02em;
     margin-bottom: 18px; overflow: hidden;
+    box-shadow: 0 0 0 5px rgba(247,241,228,.66);
   }
   .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   h1 {
@@ -65,15 +81,23 @@
     display: flex; align-items: center; justify-content: center; gap: .5rem;
     font-family: var(--f-body); font-size: .95rem; font-weight: 600; letter-spacing: 0;
     text-decoration: none; color: var(--ink);
-    border: 1px solid var(--line); background: transparent;
+    border: 1px solid var(--line); background: rgba(255,255,255,.72);
+    -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
     padding: 14px 16px; border-radius: 12px; width: 100%; cursor: pointer;
     transition: border-color .2s, background .2s, transform .1s;
     -webkit-appearance: none; appearance: none;
   }
-  .btn:active { transform: scale(.985); background: rgba(1,4,11,.03); }
+  .btn:active { transform: scale(.985); background: rgba(255,255,255,.9); }
   .btn svg { width: 17px; height: 17px; flex: none; }
-  .btn-primary { background: var(--ink); border-color: var(--ink); color: var(--card); font-weight: 700; }
-  .btn-ghost { color: var(--dim); border-color: transparent; padding: 12px 16px; font-weight: 500; }
+  .btn-primary {
+    background: var(--ink); border-color: var(--ink); color: var(--paper); font-weight: 700;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  .btn-primary:active { background: #14181f; }
+  .btn-ghost {
+    color: var(--dim); border-color: transparent; background: rgba(255,255,255,.4);
+    padding: 12px 16px; font-weight: 500;
+  }
   .row { display: flex; gap: 10px; margin: 10px 0; }
   .row .btn { margin: 0; }
   .btn + .btn { margin-top: 10px; }
@@ -81,7 +105,11 @@
   .qr-wrap .lbl {
     font-family: var(--f-body); font-size: .82rem; font-weight: 500; color: var(--faint); margin: 0 0 12px;
   }
-  #qr { display: inline-block; padding: 12px; background: #fff; border: 1px solid var(--line); border-radius: 12px; line-height: 0; }
+  #qr {
+    display: inline-block; padding: 12px; background: #fff;
+    border: 1px solid var(--line); border-radius: 12px; line-height: 0;
+    box-shadow: 0 0 0 6px rgba(247,241,228,.6);
+  }
   #qr img, #qr canvas { display: block; }
   footer {
     padding: 16px 24px 22px; border-top: 1px solid var(--line);
@@ -96,32 +124,35 @@
 <body>
 
 <main class="card">
-  <div class="hdr">
-    <canvas class="net" aria-hidden="true"></canvas>
-    <span class="logo" role="img" aria-label="CRIZA"></span>
-  </div>
-  <div class="body">
-    <div class="photo" aria-hidden="true">PD</div>
-    <h1>Pablo Javier Díaz Azulay</h1>
-    <p class="org">CRIZA · plataforma de innovación aplicada</p>
-
-    <a class="btn btn-primary" id="vcard" download="Pablo Diaz Azulay.vcf">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
-      Guardar contacto
-    </a>
-    <div class="row">
-      <a class="btn" href="https://wa.me/5493516880339" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn" href="mailto:hola@criza.bio">Email</a>
+  <canvas class="net" aria-hidden="true"></canvas>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="inner">
+    <div class="hdr">
+      <span class="logo" role="img" aria-label="CRIZA"></span>
     </div>
-    <a class="btn btn-ghost" href="https://criza.bio" target="_blank" rel="noopener">Ver el sitio &rarr;</a>
-    <button class="btn btn-ghost" id="share" type="button">Compartir esta tarjeta</button>
+    <div class="body">
+      <div class="photo" aria-hidden="true">PD</div>
+      <h1>Pablo Javier Díaz Azulay</h1>
+      <p class="org">CRIZA · plataforma de innovación aplicada</p>
 
-    <div class="qr-wrap">
-      <p class="lbl">Escaneá para abrir esta tarjeta</p>
-      <div id="qr"></div>
+      <a class="btn btn-primary" id="vcard" download="Pablo Diaz Azulay.vcf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        Guardar contacto
+      </a>
+      <div class="row">
+        <a class="btn" href="https://wa.me/5493516880339" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="mailto:hola@criza.bio">Email</a>
+      </div>
+      <a class="btn btn-ghost" href="https://criza.bio" target="_blank" rel="noopener">Ver el sitio &rarr;</a>
+      <button class="btn btn-ghost" id="share" type="button">Compartir esta tarjeta</button>
+
+      <div class="qr-wrap">
+        <p class="lbl">Escaneá para abrir esta tarjeta</p>
+        <div id="qr"></div>
+      </div>
     </div>
+    <footer>criza.bio · © 2026 CRIZA</footer>
   </div>
-  <footer>criza.bio · © 2026 CRIZA</footer>
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -188,12 +219,12 @@
       DPR = Math.min(2, window.devicePixelRatio || 1);
       c.width = W * DPR; c.height = H * DPR; c.style.width = W + "px"; c.style.height = H + "px";
       x.setTransform(DPR, 0, 0, DPR, 0, 0);
-      var n = Math.max(16, Math.min(44, Math.round(W * H / 4400)));
+      var n = Math.max(22, Math.min(58, Math.round(W * H / 5200)));
       pts = [];
-      for (var i = 0; i < n; i++) pts.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.17, vy: (Math.random()-0.5)*0.17 });
+      for (var i = 0; i < n; i++) pts.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.16, vy: (Math.random()-0.5)*0.16 });
     }
     function frame(step) {
-      var LINK = Math.min(160, Math.max(100, W / 2.8));
+      var LINK = Math.min(165, Math.max(110, W / 2.7));
       x.clearRect(0, 0, W, H);
       if (step) {
         for (var i = 0; i < pts.length; i++) {
@@ -208,7 +239,7 @@
         for (var j = i + 1; j < pts.length; j++) {
           var b = pts[j], d = Math.hypot(p.x - b.x, p.y - b.y);
           if (d > LINK) continue;
-          var col = ramp(p.x / W), al = (1 - d / LINK) * 0.62;
+          var col = ramp(p.x / W), al = (1 - d / LINK) * 0.6;
           x.strokeStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + al.toFixed(3) + ")";
           x.lineWidth = 1.35;
           x.beginPath(); x.moveTo(p.x, p.y); x.lineTo(b.x, b.y); x.stroke();
@@ -228,6 +259,9 @@
     if (!reduce) loop();
     var rt;
     window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { size(); frame(false); }, 150); });
+    if (window.ResizeObserver) {
+      new ResizeObserver(function () { size(); if (!raf) frame(false); }).observe(host);
+    }
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
       else if (!raf && !reduce) loop();
