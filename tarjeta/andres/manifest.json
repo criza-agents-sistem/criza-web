@@ -1,0 +1,18 @@
+{
+  "id": "/tarjeta/andres",
+  "name": "Mi tarjeta · CRIZA",
+  "short_name": "Mi tarjeta",
+  "description": "Tarjeta de contacto de Andrés S. Basso — CRIZA.",
+  "lang": "es",
+  "start_url": "/tarjeta/andres?src=pwa",
+  "scope": "/tarjeta/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EFEBE2",
+  "theme_color": "#EFEBE2",
+  "icons": [
+    { "src": "/tarjeta/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/tarjeta/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/tarjeta/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

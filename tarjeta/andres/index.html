@@ -11,6 +11,12 @@
 <meta property="og:url" content="https://criza.bio/tarjeta/andres">
 <meta property="og:image" content="https://criza.bio/assets/logo.png">
 <link rel="icon" href="/assets/logo.png">
+<link rel="manifest" href="/tarjeta/andres/manifest.json">
+<link rel="apple-touch-icon" href="/tarjeta/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mi tarjeta">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Andrés S. Basso · CRIZA</title>
 <style>
   :root {
@@ -268,6 +274,13 @@
     });
   }
 })();
+</script>
+<script>
+  if ("serviceWorker" in navigator) {
+    addEventListener("load", function () {
+      navigator.serviceWorker.register("/tarjeta/sw.js", { scope: "/tarjeta/" }).catch(function () {});
+    });
+  }
 </script>
 </body>
 </html>
