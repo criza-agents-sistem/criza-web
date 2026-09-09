@@ -4,13 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="CRIZA — plataforma interdisciplinaria de innovación aplicada y creación de nuevos negocios. Integramos ciencia, biotecnología, ingeniería, IA y análisis económico para transformar problemas complejos en soluciones viables y escalables.">
-<meta name="theme-color" content="#FCFCFB" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#01040B" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#01040B">
 <meta property="og:title" content="CRIZA">
 <meta property="og:description" content="De la ciencia a la industria hay una transformación. La acompañamos de principio a fin.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/logo.png">
 <title>CRIZA</title>
+<script>
+  /* Tema por defecto: oscuro. Se respeta la elección guardada si el visitante
+     usó el interruptor. Corre antes del primer paint para no parpadear. */
+  (function () {
+    var t;
+    try { t = localStorage.getItem("criza-theme"); } catch (e) {}
+    if (t !== "light" && t !== "dark") t = "dark";
+    document.documentElement.setAttribute("data-theme", t);
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", t === "dark" ? "#01040B" : "#FCFCFB");
+  })();
+</script>
 <style>
   :root {
     --ground: #FCFCFB;
@@ -45,7 +56,7 @@
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --ground: #01040B;
+      --ground: #06080E;
       --surface: #0B0F17;
       --ink: #EEECE4;
       --stone: #99A29B;
@@ -63,7 +74,7 @@
     }
   }
   :root[data-theme="dark"] {
-    --ground: #01040B;
+    --ground: #06080E;
     --surface: #0B0F17;
     --ink: #EEECE4;
     --stone: #99A29B;
@@ -741,6 +752,8 @@
     btn.addEventListener("click", function () {
       var next = current() === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", next === "dark" ? "#01040B" : "#FCFCFB");
       try { localStorage.setItem("criza-theme", next); } catch (e) {}
     });
   })();
