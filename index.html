@@ -317,8 +317,11 @@
   /* ---- stages: seccion "camara" (fondo oscuro fijo, no depende del tema) ---- */
   .stages-sec {
     position: relative; color: #ECE7DB; padding: clamp(4rem, 10vw, 7.5rem) 0;
-    background: linear-gradient(180deg, #0E141F, #121927);
-    box-shadow: inset 0 36px 56px -44px #000, inset 0 -36px 56px -44px #000;
+    background: linear-gradient(180deg, #140F0A, #1B1510);
+    box-shadow:
+      inset 0 0 130px -34px rgba(219,124,64,.14),
+      inset 0 40px 60px -48px rgba(0,0,0,.66),
+      inset 0 -40px 60px -48px rgba(0,0,0,.66);
   }
   /* secciones camara: panel elevado, bordes hundidos y costura con el degrade de marca */
   .stages-sec::before, .stages-sec::after,
@@ -326,8 +329,8 @@
     content: ""; position: absolute; left: 0; right: 0; height: 3px; z-index: 4; pointer-events: none;
     background: linear-gradient(90deg, var(--husk), #FB7713 36%, #6F9D80 66%, var(--emergence));
   }
-  .stages-sec::before, #valores::before { top: 0; box-shadow: 0 12px 30px -12px rgba(219,124,64,.42); }
-  .stages-sec::after, #valores::after { bottom: 0; box-shadow: 0 -12px 30px -12px rgba(111,157,128,.38); }
+  .stages-sec::before, #valores::before { top: 0; box-shadow: 0 12px 32px -12px rgba(219,124,64,.4); }
+  .stages-sec::after, #valores::after { bottom: 0; box-shadow: 0 -12px 32px -12px rgba(219,124,64,.32); }
   .stages-main { position: relative; padding-left: 1.6rem; }
   .stages-sec .eyebrow { color: #DB7C40; margin: 0 0 1.4rem; }
   .stages-sec h2 {
@@ -460,8 +463,11 @@
   /* ---- valores: seccion oscura (el nucleo) ---- */
   #valores {
     position: relative; color: #ECE7DB; padding-block: clamp(4.5rem, 10vw, 7.5rem); border-top: 0;
-    background: linear-gradient(180deg, #0E141F, #121927);
-    box-shadow: inset 0 36px 56px -44px #000, inset 0 -36px 56px -44px #000;
+    background: linear-gradient(180deg, #140F0A, #1B1510);
+    box-shadow:
+      inset 0 0 130px -34px rgba(219,124,64,.14),
+      inset 0 40px 60px -48px rgba(0,0,0,.66),
+      inset 0 -40px 60px -48px rgba(0,0,0,.66);
   }
   #valores .eyebrow { color: #DB7C40; }
   #valores .eyebrow::before { background: #6F9D80; }
