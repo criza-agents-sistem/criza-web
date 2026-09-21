@@ -8,6 +8,11 @@
 <meta property="og:title" content="CRIZA">
 <meta property="og:description" content="De la ciencia a la industria hay una transformación. La acompañamos de principio a fin.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://criza.bio/">
+<link rel="canonical" href="https://criza.bio/">
+<link rel="alternate" hreflang="es" href="https://criza.bio/">
+<link rel="alternate" hreflang="en" href="https://criza.bio/en">
+<link rel="alternate" hreflang="x-default" href="https://criza.bio/">
 <link rel="icon" href="assets/logo.png">
 <title>CRIZA</title>
 <script>
@@ -179,6 +184,14 @@
     transition: border-color .18s, color .18s;
   }
   .theme-btn:hover { color: var(--ink); border-color: var(--faint); }
+  .lang-btn {
+    appearance: none; background: transparent; border: 1px solid var(--line);
+    color: var(--stone); border-radius: 999px; height: 34px; padding: 0 .75rem;
+    font-family: var(--font-label); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+    cursor: pointer; display: grid; place-items: center; text-decoration: none;
+    transition: border-color .18s, color .18s;
+  }
+  .lang-btn:hover { color: var(--ink); border-color: var(--faint); }
   .cta {
     font-family: var(--font-label); font-size: .74rem; letter-spacing: .08em;
     text-transform: uppercase; text-decoration: none;
@@ -539,6 +552,7 @@
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="head-tools">
+      <a class="lang-btn" href="/en" aria-label="Switch to English" hreflang="en">EN</a>
       <button class="theme-btn" id="theme" type="button" aria-label="Cambiar tema">◐</button>
       <a class="cta" href="#contacto">Escribinos</a>
     </div>
@@ -705,19 +719,19 @@
       <h2 id="eq-h">Tres capacidades, una mesa</h2>
       <div class="team">
         <div class="member">
-          <div class="mono" aria-hidden="true">AB</div>
+          <div class="mono"><img src="assets/equipo-andres.jpg" alt="Andrés S. Basso" width="640" height="640" loading="lazy"></div>
           <h3>Andrés S. Basso</h3>
           <p class="role">Dirección técnica, I+D y desarrollo de producto</p>
           <p>Ingeniero Químico y Máster en Ciencias (Suelos), Iowa State University. Procesos, biotecnología, fertilizantes y nutrición animal. Socio fundador y director general de una empresa de bebidas y biotecnología.</p>
         </div>
         <div class="member">
-          <div class="mono" aria-hidden="true">SB</div>
+          <div class="mono"><img src="assets/equipo-sebastian.jpg" alt="Sebastián Pompeo Bizzi" width="640" height="640" loading="lazy"></div>
           <h3>Sebastián Pompeo Bizzi</h3>
           <p class="role">Inteligencia tecnológica, análisis económico e IA</p>
           <p>Economista y Magíster en Administración de Activos Financieros. Más de 20 años en estrategia y finanzas. Desarrolló la plataforma de agentes de IA. Coordinador de Datos y Proyectos Estratégicos del Clúster de Biotecnología de Córdoba.</p>
         </div>
         <div class="member">
-          <div class="mono" aria-hidden="true">PD</div>
+          <div class="mono"><img src="assets/equipo-pablo.jpg" alt="Pablo Javier Díaz Azulay" width="320" height="320" loading="lazy"></div>
           <h3>Pablo Javier Díaz Azulay</h3>
           <p class="role">Dirección ejecutiva, vinculación y negocio</p>
           <p>Más de 20 años en modelos de negocio, gestión de proyectos complejos, articulación institucional y alianzas. Clúster Manager del Clúster de Biotecnología de Córdoba.</p>
