@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Melina Gallardo — MicroBigs. Guardá mi contacto.">
 <meta name="theme-color" content="#EEF6F1">
-<meta name="color-scheme" content="only light">
+<meta name="color-scheme" content="light dark">
 <meta property="og:title" content="Melina Gallardo · MicroBigs">
 <meta property="og:description" content="Guardá mi contacto y conocé MicroBigs — pequeños seres, grandes soluciones.">
 <meta property="og:type" content="profile">
@@ -26,7 +26,17 @@
     --line: #DCE8E1; --green: #1F9E63; --green-2: #2BBB8B; --lime: #7BD550;
     --f-head: "Maven Pro", "Helvetica Neue", Arial, sans-serif;
     --f-body: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
-    color-scheme: only light; /* que el navegador no la oscurezca solo */
+    color-scheme: light dark;
+  }
+  /* Truco: declaramos una "versión oscura" con los mismos colores claros.
+     Así Chrome y Samsung Internet ven que la página maneja el modo oscuro
+     y no la oscurecen por su cuenta; la tarjeta se ve clara igual. */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #EEF6F1; --paper: #FFFFFF; --ink: #1A3347; --dim: #4F6272; --faint: #8796A2;
+      --line: #DCE8E1; --green: #1F9E63; --green-2: #2BBB8B; --lime: #7BD550;
+    }
+    html, body { background: #EEF6F1; color: #1A3347; }
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
